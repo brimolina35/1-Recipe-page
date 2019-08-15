@@ -1,0 +1,39 @@
+.heading-primary {
+    color: $color-dark-blue;
+    text-transform: uppercase;
+
+
+    &--main {
+        display: block;
+        font-size: 10rem;
+        font-weight: 400;
+        letter-spacing: 2rem;
+
+
+    }
+
+    &--sub {
+        display: block;
+        font-size: 3rem;
+        font-weight: 400;
+        letter-spacing: 1.3rem;
+
+
+    }
+}
+
+.heading {
+
+    &-4 {
+        font-size: 1.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+
+        &--light {
+            color: $color-dark-green;
+        }
+        &--dark {
+            color: $color-darkest-green;
+        }
+    }
+}
