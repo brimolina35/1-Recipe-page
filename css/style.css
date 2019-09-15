@@ -1,3 +1,19 @@
+@keyframes moveInbottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
 *,
 *::after,
 *::before {
@@ -22,12 +38,18 @@ body {
     display: block;
     font-size: 10rem;
     font-weight: 400;
-    letter-spacing: 2rem; }
+    letter-spacing: 2rem;
+    animation-name: moveInTop;
+    animation-duration: 2s;
+    animation-timing-function: ease-out; }
   .heading-primary--sub {
     display: block;
     font-size: 3rem;
     font-weight: 400;
-    letter-spacing: 1.3rem; }
+    letter-spacing: 1.3rem;
+    animation-name: moveInTop;
+    animation-duration: 2s;
+    animation-timing-function: ease-out; }
 
 .heading-4 {
   font-size: 1.9rem;
@@ -44,26 +66,59 @@ body {
   padding: 1.5rem 4rem;
   display: inline-block;
   border-radius: 0;
-  border: none;
+  transition: all .2s;
   position: relative;
+  border: none;
   cursor: pointer; }
 
-.btn-white {
-  font-size: 1.3rem;
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0; }
+
+.btn:active, .btn:focus {
+  outline: none;
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+.btn--white {
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: .1rem;
   background-image: linear-gradient(to bottom, #d6a36f, #73614c);
   color: #b5e0ff;
   margin-top: 2rem; }
+  .btn--white::after {
+    background-image: linear-gradient(to bottom, #d6a36f, #73614c); }
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .5s; }
+
+.btn--animated {
+  animation: moveInbottom .5s ease-out .75s;
+  animation-fill-mode: backwards; }
 
 .features {
   background-color: #e3faff;
-  height: 65%;
+  max-height: 200%;
   transform: translateY(-2rem);
   grid-column: center-start / center-end;
   margin: 10rem 0;
   padding: 3rem .5rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-  grid-template-rows: repeat(2, min-content);
+  grid-template-rows: repeat(auto-fit, min-content);
   grid-gap: 6rem;
   align-items: start; }
 
@@ -87,7 +142,7 @@ body {
   grid-column: full-start / full-end;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(8, 5vw);
+  grid-template-rows: repeat(7, 5vw);
   grid-gap: 1.5rem;
   padding: 1.5rem; }
   .gallery__item--1 {
@@ -137,19 +192,96 @@ body {
     display: block; }
 
 .story__pictures {
-  background-color: #a88256;
+  background-color: #b7eb8a;
   grid-column: full-start / col-end 3; }
 
 .story__content {
-  background-color: #0a347a;
-  grid-column: col-end 3 / full-end; }
+  grid-column: col-end 3 / full-end;
+  z-index: 2000; }
+
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  height: 70rem;
+  position: relative; }
+  .card__side {
+    height: 70rem;
+    transition: all .8s ease;
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15); }
+    .card__side--front {
+      background-image: linear-gradient(to bottom, #d6a36f 75%, #6abffc); }
+    .card__side--back {
+      height: 70rem;
+      transform: rotateY(180deg); }
+      .card__side--back-1 {
+        background-image: linear-gradient(to bottom, #d6a36f, #6abffc 25%); }
+      .card__side--back-2 {
+        background-image: linear-gradient(to bottom, #d6a36f, #6abffc 25%); }
+  .card:hover .card__side--front {
+    transform: rotateY(-180deg); }
+  .card:hover .card__side--back {
+    transform: rotateY(0); }
+  .card__picture {
+    background-size: cover;
+    height: 30rem;
+    background-blend-mode: screen; }
+    .card__picture--1 {
+      background-image: url(../img/unsplash-gallery/vegan-card-unsplash.jpg); }
+    .card__picture--2 {
+      background-image: url(../img/unsplash-gallery/burger-card-unsplash.jpg); }
+  .card__heading {
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: .2rem;
+    text-transform: uppercase;
+    text-align: left;
+    transform: translateY(6rem);
+    color: #0a347a;
+    margin: 0;
+    position: absolute;
+    top: 24rem;
+    left: 0;
+    width: 75%; }
+  .card__heading-span {
+    padding-top: 1rem;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone; }
+  .card__details {
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 3rem; }
+    .card__details ul {
+      list-style: none;
+      width: 75%;
+      margin: 1rem auto; }
+      .card__details ul li {
+        transform: translateY(2rem);
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 1rem; }
+        .card__details ul li:not(:last-child) {
+          border-bottom: 1.2px dotted #031a40; }
+  .card__rating {
+    font-size: 2rem;
+    fill: #0a347a;
+    height: 8rem; }
+    .card__rating__icon {
+      text-align: center;
+      height: 2rem; }
 
 .footer {
   background-color: #031a40; }
 
 .container {
   display: grid;
-  grid-template-rows: 70vh min-content 45vw repeat(3, min-content);
+  grid-template-rows: min-height 70vh min-content min-height 40vw min-content;
   grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(4, [col-start] minmax(min-content, 28rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end]; }
 
 .header {
@@ -173,6 +305,16 @@ body {
     transform: translate(-50%, -50%);
     text-align: center; }
 
+.heading-secondary {
+  height: 100vh;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  color: #0a347a;
+  -webkit-background-clip: text;
+  letter-spacing: .2rem; }
+
 .navigation__checkbox {
   display: none; }
 
@@ -182,7 +324,7 @@ body {
   width: 7rem;
   position: fixed;
   top: 6rem;
-  right: 6rem;
+  right: 2rem;
   border-radius: 50%;
   z-index: 2000;
   box-shadow: 0 1rem 3rem rgba(3, 26, 64, 0.5);
@@ -195,7 +337,7 @@ body {
   border-radius: 50%;
   position: fixed;
   top: 6.5rem;
-  right: 6.5rem;
+  right: 2rem;
   background-image: linear-gradient(#6abffc, #e3faff);
   z-index: 1000;
   transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1); }

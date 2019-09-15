@@ -1,11 +1,130 @@
 .story {
     &__pictures {
-        background-color: $color-light-medium-brown;
+        background-color: $color-light-green;
         grid-column: full-start / col-end 3;
     }
 
     &__content {
-        background-color: $color-dark-blue;
         grid-column: col-end 3 / full-end;
+        z-index: 2000;
     }
+}
+
+.card {
+    perspective: 150rem;
+    -moz-perspective: 150rem;
+    height: 70rem;
+    position: relative;
+
+    &__side {
+        height: 70rem;
+        transition: all .8s ease;
+        position: absolute;
+        top: 0;
+        left: 0%;
+        width: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        overflow: hidden;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+        &--front {
+            background-image: linear-gradient(to bottom, $color-light-brown 75%, $color-light-blue);
+        }
+
+        &--back {
+            height: 70rem;
+            transform: rotateY(180deg);
+
+            &-1 {
+                background-image: linear-gradient(to bottom, $color-light-brown, $color-light-blue 25%);
+            }
+
+            &-2 {
+                background-image: linear-gradient(to bottom, $color-light-brown, $color-light-blue 25%);
+
+            }
+        }
+    }
+
+    &:hover &__side--front {
+        transform: rotateY(-180deg);
+    }
+
+    &:hover &__side--back {
+        transform: rotateY(0);
+    }
+
+    &__picture {
+        background-size: cover;
+        height: 30rem;
+        background-blend-mode: screen;
+
+        &--1 {
+
+            background-image: url(../img/unsplash-gallery/vegan-card-unsplash.jpg);
+        }
+
+        &--2 {
+            background-image: url(../img/unsplash-gallery/burger-card-unsplash.jpg);
+        }
+    }
+
+    &__heading {
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: .2rem;
+        text-transform: uppercase;
+        text-align: left;
+        transform: translateY(6rem);
+        color: $color-dark-blue;
+        margin: 0;
+        position: absolute;
+        top: 24rem;
+        left: 0;
+        width: 75%
+    }
+
+    &__heading-span{
+        padding-top: 1rem;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+    }
+
+    &__details {
+      font-size: 1.5rem;
+      font-weight: 400;
+      padding: 3rem;
+
+      ul {
+          list-style: none;
+          width: 75%;
+          margin: 1rem auto;
+
+
+          li {
+            transform: translateY(2rem);
+              text-align: center;
+              font-size: 1.5rem;
+              padding: 1rem;
+
+
+              &:not(:last-child) {
+                  border-bottom: 1.2px dotted $color-darkest-blue;
+              }
+
+
+          }
+      }
+  }
+  &__rating {
+    font-size: 2rem;
+    fill: $color-dark-blue;
+    height: 8rem;
+
+    &__icon {
+        text-align: center;
+        height: 2rem;
+    }
+  }
 }

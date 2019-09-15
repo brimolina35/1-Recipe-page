@@ -24,6 +24,7 @@ $color-rgba-brown: rgba(214, 163, 111, 1);
 
 
 //greens
+$color-lightest-green: #e5ffba;
 $color-light-green: #b7eb8a;
 $color-dark-green: #114225;
 $color-darkest-green: #0f3612;
@@ -32,3 +33,13 @@ $color-darkest-green: #0f3612;
 
 
 $default-font-size: 1.6rem;
+
+//BREAKPOINTS!!
+$bp-largest: 75em; //1200px
+$bp-large: 62.5em; //1000px
+$bp-medium: 50em; //800px
+$bp-small: 37.5em; //600px
+
+//@media only screen and (max-width: $bp-largest) {}
+
+//https://caniuse.com check if your css is supported in different browsers
